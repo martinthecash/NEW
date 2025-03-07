@@ -41,6 +41,8 @@
             src: url('fonts/intro.otf') format('opentype'); /* Убедитесь, что путь правильный */
 }
         body {
+            touch-action: none; /* Отключаем стандартные жесты, такие как зум */
+            user-select: none;  /* Отключаем выделение текста */
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
