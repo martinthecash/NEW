@@ -31,17 +31,14 @@
     <link href="css2@family=Poppins%253Awght@400%3B600&amp;display=swap.css" rel="stylesheet">
     <style>
 @font-face {
-    font-family: 'Intro';
-    src: url('fonts/Intro.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'Halvar Breitschrift';
     src: url('fonts/halvar_breitschrift.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+}
+@font-face {
+            font-family: 'Intro';
+            src: url('fonts/intro.otf') format('opentype'); /* Убедитесь, что путь правильный */
 }
         body {
             margin: 0;
@@ -98,7 +95,6 @@
         }
 
         .header h1 {
-            font-family: 'Intro', Arial, sans-serif;
             margin: 0;
             font-size: 1.8rem;
             font-weight: 600;
@@ -106,6 +102,7 @@
             color: #fff;
             position: relative;
             display: inline-block;
+            font-family: 'Intro', sans-serif;
         }
 
         .header h1::after {
@@ -238,8 +235,8 @@
         .tab-content h2 {
             margin-top: 0;
             padding: 20px 20px 0 20px;
-            font-family: 'Intro', Arial, sans-serif;
             font-size: 1.5rem;
+            font-family: 'Intro', sans-serif;
         }
 
         .tab-content p {
@@ -321,7 +318,6 @@
             padding: 10px 25px;
             border-radius: 25px;
             color: white;
-            font-family: 'Intro', Arial, sans-serif;
             font-size: 15px;
             font-weight: 900;
             cursor: pointer;
@@ -331,6 +327,7 @@
             margin-top: 10px;
             pointer-events: auto;
             user-select: none;
+            font-family: 'Intro', sans-serif;
         }
 
         .play-button:hover {
