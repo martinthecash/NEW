@@ -1,4 +1,14 @@
+@font-face {
+    font-family: 'Halvar Breitschrift';
+    src: url('fonts/halvar_breitschrift.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
+@font-face {
+    font-family: 'Intro';
+    src: url('fonts/intro.otf') format('opentype'); /* Убедитесь, что путь правильный */
+}
 
 .page {
     overflow: hidden;
@@ -41,6 +51,18 @@ iframe {
     z-index: 6;
 }
 
+.pred-txt {
+    position: absolute;
+    margin-top: 340px;
+    font-size: 19px;
+    color: rgb(0, 0, 0);
+    font-family: 'Halvar Breitschrift', sans-serif;
+    white-space: nowrap;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 500;
+  }
+
 
 .text1 {
     position: absolute;
@@ -50,29 +72,29 @@ iframe {
     font-weight: bold;
     z-index: 5;
     transition: font-size 0.3s ease;
-    font-family: 'Arial', sans-serif; 
+    font-family: 'Intro', sans-serif;
     
         }
-        .betting {
+        .betting { /* ИКС */
             position: absolute;
-            margin-top: 380px;
+            margin-top: 383px;
             margin-right: 0px;
-            font-size: 80px;
+            font-size: 70px;
             font-weight: bold;
             z-index: 5;
             transition: font-size 0.3s ease;
-            font-family: 'Arial', sans-serif; 
+            font-family: 'Intro', sans-serif; 
             
         }
-        .fly {
+        .fly { /* WAITING */
             position: absolute;
-            margin-top: 390px;
+            margin-top: 396px;
             margin-right: 0px;
-            font-size: 60px;
+            font-size: 50px;
             font-weight: bold;
             z-index: 5;
             transition: font-size 0.4s ease;
-            font-family: 'Arial', sans-serif; 
+            font-family: 'Intro', sans-serif;  
             
         }
 
