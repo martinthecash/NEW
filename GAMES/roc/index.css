@@ -1,7 +1,3 @@
-@font-face {
-    font-family: 'Intro';
-    src: url('fonts/intro.otf') format('opentype'); /* Убедитесь, что путь правильный */
-}
 
 
 .page {
@@ -58,7 +54,7 @@ iframe {
     font-weight: bold;
     z-index: 5;
     transition: font-size 0.3s ease;
-    font-family: 'Intro', sans-serif;  
+    font-family: 'SF Pro Display', sans-serif; 
 }
 
 .betting {
@@ -69,7 +65,7 @@ iframe {
     font-weight: bold;
     z-index: 5;
     transition: font-size 0.3s ease;
-    font-family: 'Intro', sans-serif; 
+    font-family: 'SF Pro Display', sans-serif; 
 }
 
 .fly {
@@ -80,7 +76,7 @@ iframe {
     font-weight: bold;
     z-index: 5;
     transition: font-size 0.4s ease;
-    font-family: 'Intro', sans-serif; 
+    font-family: 'SF Pro Display', sans-serif; 
 }
 
 .fly2 {

@@ -54,7 +54,7 @@ iframe {
 .pred-txt {
     position: absolute;
     margin-top: 340px;
-    font-size: 19px;
+    font-size: 20px;
     font-family: 'Halvar Breitschrift', sans-serif;
     white-space: nowrap;
     left: 50%;
@@ -145,7 +145,7 @@ iframe {
 
 .page::before {
     content: "";
-    background-image: url('images/bg.jpg');
+    background-color: #080808;
     background-size: cover !important;
     background-repeat: no-repeat;
     background-position: center top;
@@ -253,8 +253,8 @@ img {
 .loader2 {
     width: 325px;
     height: 100px;
-    border: 2px solid #88ff00;
-    background-color: #000000;
+    border: 2px solid #0075FF;
+    background-color: #1D1E20;
     position: absolute;
     border-radius: 30px; 
     margin-top: 375px;
@@ -281,7 +281,7 @@ img {
     border: 1px solid #261c4a;
     position: relative;
     display: flex;
-    margin: 120px auto -415px auto;
+    margin: 200px auto -415px auto;
     justify-content: center;
     background-color: #151028;
     overflow: hidden;
