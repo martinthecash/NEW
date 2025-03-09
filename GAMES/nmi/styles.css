@@ -6,6 +6,8 @@
 
 /* Основные стили для страницы */
 body {
+    touch-action: none; /* Отключаем стандартные жесты, такие как зум */
+    user-select: none;  /* Отключаем выделение текста */
     font-family: "Intro", Arial, sans-serif;
     background-color: #171717; /* Тёмно-серый фон */
     color: #ffffff; /* Белый текст */
