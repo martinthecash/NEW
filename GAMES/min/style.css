@@ -1,8 +1,13 @@
-@font-face {
+﻿@font-face {
     font-family: 'Halvar Breitschrift';
     src: url('fonts/halvar_breitschrift.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+}
+
+@font-face {
+    font-family: 'Intro';
+    src: url('fonts/intro.otf') format('opentype'); /* Убедитесь, что путь правильный */
 }
 
 html, body {
@@ -123,7 +128,7 @@ button#flip {
     border: none;
     border-radius: 30px;
     color: #FFF;
-    font-family: 'Halvar Breitschrift', sans-serif;
+    font-family: 'Intro', sans-serif;
     font-size: 16px;
     height: 42px;
     display: flex;
