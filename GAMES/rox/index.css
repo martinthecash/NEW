@@ -81,7 +81,7 @@ iframe {
         }
         .betting { /* ИКС */
             position: absolute;
-            margin-top: 550px;
+            margin-top: 540px;
             margin-right: 0px;
             font-size: 70px;
             font-weight: bold;
@@ -92,7 +92,7 @@ iframe {
         }
         .fly { /* WAITING */
             position: absolute;
-            margin-top: 565px;
+            margin-top: 555px;
             margin-right: 0px;
             font-size: 50px;
             font-weight: bold;
