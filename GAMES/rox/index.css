@@ -32,6 +32,8 @@
 .visible {
     overflow: hidden;
     position: absolute;
+    touch-action: none; /* Отключаем стандартные жесты, такие как зум */
+    user-select: none;  /* Отключаем выделение текста */
     width: 315px;
     height: 350px;
     margin-top: 90px;
@@ -41,7 +43,9 @@
 }
 
 iframe {
-    overflow: hidden;
+    overflow: hidden; /* Отключение прокрутки */
+    touch-action: none; /* Отключаем стандартные жесты, такие как зум */
+    user-select: none;  /* Отключаем выделение текста */
     width: 100%;
     height: 200%;
     position: absolute;
@@ -77,7 +81,7 @@ iframe {
         }
         .betting { /* ИКС */
             position: absolute;
-            margin-top: 525px;
+            margin-top: 550px;
             margin-right: 0px;
             font-size: 70px;
             font-weight: bold;
@@ -88,7 +92,7 @@ iframe {
         }
         .fly { /* WAITING */
             position: absolute;
-            margin-top: 540px;
+            margin-top: 565px;
             margin-right: 0px;
             font-size: 50px;
             font-weight: bold;
