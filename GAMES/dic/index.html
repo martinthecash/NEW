@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Dice Game</title>
 <style>
-    
+
 @font-face {
     font-family: 'Halvar Breitschrift';
     src: url('fonts/halvar_breitschrift.ttf') format('truetype');
@@ -19,6 +19,8 @@
 }
 
 body {
+    width: 100vw;
+    width: center;
     touch-action: none; /* Отключаем стандартные жесты, такие как зум */
     user-select: none;  /* Отключаем выделение текста */
     background-image: url('images/bg.png');
@@ -33,16 +35,16 @@ body {
 }
 
 #game {
-    width: 60vw; /* 60% ширины экрана */
-    max-width: 300px; /* Максимальная ширина 600px */
-    min-width: 100px; /* Минимальная ширина 300px */
-    padding: 20px;
-    background: rgba(51, 51, 51, 0.3);
-    border-radius: 20px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    touch-action: none; /* Отключаем стандартные жесты, такие как зум */
+    user-select: none;  /* Отключаем выделение текста */
     text-align: center;
+    background: rgba(51, 51, 51, 0.3); /* Прозрачный стеклянный эффект */
+    padding: 15px;
+    border-radius: 30px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px); /* Размытие фона */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Светлая рамка */
+    transform: scale(1.5);
 }
 
 #number {
@@ -72,7 +74,7 @@ body {
 button {
     background-image: linear-gradient(to right, #1084ff, #0056b3);
     color: white;
-    padding: 10px 30px;
+    padding: 30px 60px;
     font-family: 'Halvar Breitschrift', sans-serif;
     font-weight: bolder;
     border: none;
@@ -186,16 +188,19 @@ button:hover {
 
 /* Медиазапросы для адаптации на мобильных устройствах */
 @media (max-width: 768px) {
-    #game {
-        width: 80vw;
-        padding: 15px;
+    .tab {
+        height: 70px; /* Фиксированная высота для планшетов */
     }
-    #number, #result {
-        font-size: 36px;
+
+    .tab button {
+        margin: 0 5px;
+        padding: 10px 15px;
+        font-size: 14px;
     }
-    button {
-        font-size: 20px;
-        padding: 15px 30px;
+
+    .tab button img {
+        max-width: 32px;
+        height: 32px;
     }
 }
 
