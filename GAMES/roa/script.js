@@ -28,12 +28,12 @@ function startGame() {
   playButton.style.opacity = "0.6";
 
   let countdown = 10;
-  timerDisplay.textContent = `Подожди: ${countdown}`;
+  timerDisplay.textContent = `Подожди: ${countdown} сек`;
 
   const interval = setInterval(() => {
     countdown--;
     if (countdown > 0) {
-      timerDisplay.textContent = `Подожди: ${countdown}`;
+      timerDisplay.textContent = `Подожди: ${countdown} сек`;
     } else {
       clearInterval(interval);
       timerDisplay.textContent = "";
