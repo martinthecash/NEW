@@ -206,7 +206,7 @@ body {
   font-family: 'Intro', sans-serif;
   color: yellow; /* второй текст желтый */
   font-size: 50px; /* уменьшен размер шрифта */
-  margin: 0px 0; /* уменьшены отступы */
+  margin: 10px 0; /* уменьшены отступы */
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.5); /* тень */
 }
 
