@@ -4,6 +4,7 @@ const winPopup = document.getElementById('winPopup');
 const multiplierValue = document.getElementById('multiplierValue');
 const playButton = document.querySelector('.play-btn');
 const jumpSound = document.getElementById('jumpSound'); 
+const timerDisplay = document.getElementById('timerDisplay'); // <--- добавили элемент для таймера
 
 const platformMultipliers = [
   1.03, 1.07, 1.12, 1.17, 1.23, 1.29, 1.36, 1.44, 1.53, 1.63,
@@ -11,27 +12,51 @@ const platformMultipliers = [
   6.13, 9.81, 19.44
 ];
 
+let gameInProgress = false;
+let canPlay = true;
 
-let gameInProgress = false; 
+function startGame() {
+  if (gameInProgress || !canPlay) {
+    console.log("Подожди 10 секунд перед следующим запуском.");
+    return;
+  }
 
-function startGame() { 
+  canPlay = false;
+  gameInProgress = true;
 
-    gameInProgress = true;
-    
-    let randomMultiplierIndex = Math.floor(Math.random() * multipliers.length);
-    let multiplierCircle = multipliers[randomMultiplierIndex];
-    let multiplier = platformMultipliers[randomMultiplierIndex];
+  playButton.disabled = true;
+  playButton.style.opacity = "0.6";
 
-    multipliers.forEach(m => m.style.backgroundColor = 'rgba(255, 255, 255, 0.2)');
-    multiplierCircle.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+  let countdown = 10;
+  timerDisplay.textContent = `Подожди: ${countdown}`;
 
-    chicken.style.left = multiplierCircle.offsetLeft + "px";
-    chicken.style.transform = `translateY(-100px)`;
-    jumpSound.play();
-    
-    setTimeout(() => {
-      chicken.style.transform = `translateY(0)`;
-      showWinPopup(multiplier);
+  const interval = setInterval(() => {
+    countdown--;
+    if (countdown > 0) {
+      timerDisplay.textContent = `Подожди: ${countdown}`;
+    } else {
+      clearInterval(interval);
+      timerDisplay.textContent = "";
+      playButton.disabled = false;
+      playButton.style.opacity = "1";
+      canPlay = true;
+    }
+  }, 1000);
+
+  let randomMultiplierIndex = Math.floor(Math.random() * multipliers.length);
+  let multiplierCircle = multipliers[randomMultiplierIndex];
+  let multiplier = platformMultipliers[randomMultiplierIndex];
+
+  multipliers.forEach(m => m.style.backgroundColor = 'rgba(255, 255, 255, 0.2)');
+  multiplierCircle.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+
+  chicken.style.left = multiplierCircle.offsetLeft + "px";
+  chicken.style.transform = `translateY(-100px)`;
+  jumpSound.play();
+
+  setTimeout(() => {
+    chicken.style.transform = `translateY(0)`;
+    showWinPopup(multiplier);
   }, 500);
 
   const scrollContainer = document.querySelector('.scroll-container');
@@ -39,8 +64,7 @@ function startGame() {
     left: multiplierCircle.offsetLeft - 200,
     behavior: 'smooth'
   });
-  
-  
+}
 
 function showWinPopup(multiplier) {
   const popup = document.querySelector('.win-popup');
@@ -61,6 +85,6 @@ function showWinPopup(multiplier) {
 }
 
 function closePopup() {
-    winPopup.style.display = 'none';
-    gameInProgress = false; // Разрешаем начать игру снова
-}}
+  winPopup.style.display = 'none';
+  gameInProgress = false;
+}
