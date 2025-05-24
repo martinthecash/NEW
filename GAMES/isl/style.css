@@ -1,0 +1,494 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+@font-face {
+            font-family: 'Intro';
+            src: url('fonts/intro.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+@font-face {
+            font-family: 'halvar';
+            src: url('fonts/halvar_breitschrift.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+@font-face {
+            font-family: 'foo';
+            src: url('fonts/foo.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+body {
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('back.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+/* ...ваши стили выше... */
+
+/* Стили модального окна сигнала */
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.modal-content {
+    position: relative;
+    background: rgba(29, 54, 142, 0.88);
+    border-radius: 40px;
+    border: 3.3px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 4px 24px rgba(20, 21, 40, 0.28), 0 1px 2px 0 rgba(0,0,0,0.10);
+    padding: 36px 28px 32px 28px;
+    min-width: 290px;
+    max-width: 95vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+.modal-rays {
+    position: absolute;
+    inset: -20%;
+    width: 140%;
+    height: 140%;
+    left: -20%;
+    top: -20%;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 50%;
+    background:
+        repeating-conic-gradient(
+            from 0deg,
+            #ffe95c 0deg 12deg,
+            transparent 12deg 30deg
+        ),
+        radial-gradient(ellipse at center,
+            rgba(255,255,255,0.18) 0%,
+            rgba(255,255,255,0.12) 55%,
+            rgba(255,255,255,0.01) 90%,
+            rgba(255,255,255,0.0) 100%
+        );
+    opacity: 0.16; /* было 0.33, стало в 2 раза прозрачнее */
+    filter: blur(1.5px);
+}
+
+
+
+
+.modal-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+.modal-title {
+    font-size: 2.6rem;
+    font-family: 'Intro', Arial, sans-serif;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px;
+    letter-spacing: 1.5px;
+    white-space: pre-line;
+}
+.modal-x {
+    font-size: 2.6rem;
+    font-family: 'Intro', Arial, sans-serif;
+    font-weight: bold;
+    color: #ffe95c;
+    margin-bottom: 5px;
+}
+.modal-currency {
+    color:#ffe95c;
+    font-size:1.2rem;
+    font-weight:bold;
+    letter-spacing:2px;
+    margin-bottom: 16px;
+}
+.modal-button {
+    margin-top: 22px;
+    padding: 14px 44px;
+    background: linear-gradient(180deg, #ffe95c 0%, #ffd700 100%);
+    border: none;
+    border-radius: 12px;
+    color: #23254a;
+    font-family: 'foo', Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    transition: filter 0.18s;
+}
+.modal-button:hover {
+    filter: brightness(1.08);
+}
+
+.platform {
+    pointer-events: none;
+    cursor: default !important;
+}
+
+@keyframes fadeIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+
+.platform-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+.platform {
+    position: absolute;
+    user-select: none;
+    cursor: pointer;
+    transition: opacity 0.5s, transform 0.3s;
+    transform-origin: center bottom;
+    z-index: 1;
+}
+
+.platform:hover {
+    filter: brightness(1.2);
+    transform: translateY(-5px) scale(1.05);
+}
+
+.platform-image {
+    width: 200px;
+    max-width: 220px;
+    min-width: 80px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+}
+
+/* Ограничим размер платформы */
+.platform {
+    max-width: 240px;
+    min-width: 80px;
+    /* если нужно ограничить высоту: */
+    max-height: 120px;
+    min-height: 40px;
+}
+.coefficient {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 38px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    z-index: 2;
+}
+
+.coefficient img {
+    height: 80px;
+    width: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+
+.cross {
+    display: none; /* Скрываем кресты на платформах */
+}
+
+.kangaroo {
+    position: absolute;
+    bottom: 30px;
+    left: 120px;
+    width: 150px;
+    height: 225px;
+    background-image: url('kengu.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    transition: all 0.5s ease-out;
+    z-index: 100;
+    filter: drop-shadow(0 8px 15px rgba(0,0,0,0.4));
+}
+
+.kangaroo.jump-end {
+    animation: bounce 0.3s ease-out;
+}
+
+@keyframes bounce {
+    0% { transform: scaleY(1); }
+    50% { transform: scaleY(0.8); }
+    100% { transform: scaleY(1); }
+}
+
+.play-buttons-bottom {
+    position: fixed;
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: auto;
+    pointer-events: none;
+}
+
+.play-button {
+    width: 202px;
+    height: 78px;
+    border-radius: 39px;
+    font-family: 'foo', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    background:
+        radial-gradient(ellipse at 20% 10%, #ffffff7b 0 1%, transparent 13%),
+        radial-gradient(ellipse at 80% 90%, #ffffff95 0 1%, transparent 25%),
+        linear-gradient(180deg, #5ad6ff 0%, #1e7ee6 100%);
+color: #18507a;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.22), 0 0 0 5px #a7e7ff inset, 0 1px 0 0 #1a8be5 inset, 0 3px 0 0 #e2f4ff;
+    transition: transform 0.15s;
+    text-shadow: 0 3px 6px #1e7ee6;
+    user-select: none;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    position: relative;
+    pointer-events: auto;
+}
+
+.play-button:active {
+    transform: scale(0.97);
+}
+.play-button::after {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    border-radius: inherit;
+    border: 5px solid #c6f0ff;
+    opacity: 0.7;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+.platform-new {
+    animation: platformAppear 0.5s forwards;
+}
+
+@keyframes platformAppear {
+    from {
+        transform: translateY(-30px) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Красивая кнопка назад */
+
+.back-button {
+    width: 170px;
+    height: 62px;
+    border-radius: 31px;
+    font-family: 'foo', Arial, sans-serif;
+    font-size: 1.7rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #9b5c00;
+    background:
+        radial-gradient(ellipse at 80% 90%, #ffffff7b 0 1%, transparent 25%),
+        radial-gradient(ellipse at 20% 10%, #ffffff95 0 1%, transparent 13%),
+        linear-gradient(180deg, #ffe95c 0%, #ffc400 100%);
+    border: none;
+    outline: none;
+    box-shadow:
+        0 2px 12px rgba(0,0,0,0.16),
+        0 0 0 4px #fff7b5 inset,
+        0 1px 0 0 #ffd700 inset,
+        0 3px 0 0 #fffbe3;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    user-select: none;
+    border: none;
+    outline: none;
+    position: relative;
+    z-index: 1100;
+    text-decoration: none;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+.back-button:active {
+    background: linear-gradient(180deg, #ffd700 0%, #ffc400 100%);
+    transform: scale(0.97);
+}
+.back-button::after {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    border-radius: inherit;
+    border: 4px solid #fffbe3;
+    opacity: 0.7;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+/* Стили для кнопки Телеграмм */
+.telegram-button {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background-color: #0088cc;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(135deg, #0088cc, #29b6f6);
+    height: 60px;
+    z-index: 200;
+    min-width: 250px;
+    justify-content: center;
+}
+
+.telegram-icon {
+    width: 34px;
+    height: 34px;
+    margin-right: 15px;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+}
+
+.telegram-button:hover {
+    background-image: linear-gradient(135deg, #29b6f6, #0088cc);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.telegram-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 767px) {
+    #kangaroo {
+        width: 120px;
+        height: 180px;
+    }
+    
+    .platform-image {
+        width: 140px;
+    }
+    
+    .coefficient {
+        top: 12px;
+        font-size: 26px;
+    }
+    
+    .coefficient img {
+        height: 55px;
+    }
+
+    
+    .telegram-button {
+        top: 20px;
+        right: 20px;
+        padding: 8px 20px;
+        font-size: 18px;
+        height: 50px;
+        min-width: 220px;
+    }
+    
+    .telegram-icon {
+        width: 28px;
+        height: 28px;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 370px) {
+    .play-button {
+        font-size: 1.2rem;
+        height: 56px;
+        width: 140px;
+    }
+    .back-button {
+        font-size: 0.95rem;
+        height: 42px;
+        width: 110px;
+    }
+    .play-buttons-bottom {
+        gap: 7px;
+        bottom: 8px;
+    }
+}
+/* Еще более мелкие экраны */
+@media (max-width: 480px) {
+    .platform-image {
+        width: 80px;
+    }
+    
+    .coefficient {
+        top: -15px;
+    }
+    
+    .coefficient img {
+        height: 40px;
+    }
+    
+    .kangaroo {
+        width: 90px;
+        height: 135px;
+    }
+
+    .telegram-button {
+        top: 15px;
+        right: 15px;
+        padding: 6px 15px;
+        font-size: 16px;
+        height: 45px;
+        min-width: 180px;
+    }
+    
+    .telegram-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+    }
+} 
